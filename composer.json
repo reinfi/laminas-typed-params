@@ -1,0 +1,40 @@
+{
+    "name": "reinfi/laminas-typed-params",
+    "type": "library",
+    "description": "A Laminas Framework module for typed params plugin to solve static code analysis.",
+    "keywords": [
+        "laminas",
+        "controller",
+        "plugin"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Reinfi"
+        }
+    ],
+    "require": {
+        "php": "~7.4.0 || ~8.0.0 || ~8.1.0",
+        "laminas/laminas-mvc": "^3.3",
+        "webmozart/assert": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Reinfi\\TypedParams\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Reinfi\\TypedParams\\Test\\": "test/"
+        }
+    },
+    "extra": {
+        "zf": {
+            "component": "Reinfi\\TypedParams"
+        }
+    },
+    "scripts": {
+        "phpunit": "./vendor/bin/phpunit -c phpunit.xml",
+        "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon"
+    }
+}
