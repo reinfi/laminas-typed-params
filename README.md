@@ -48,7 +48,7 @@ As of now you can not have conditional return types in the `@method` Annotation,
 
 ```php 
 /**
- * @method ($param is string ? TypedValue : TypedParams) typedParams(string $param, $defualt = null)
+ * @method ($param is string ? TypedValue : TypedParams) typedParams(string $param, $default = null)
  */
 ```
 For that reason the invocation of the plugin always returns the plugin itself and you need to use the public methods.
