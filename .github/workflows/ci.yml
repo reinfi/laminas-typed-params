@@ -15,10 +15,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version:
-          - '8.3'
-          - '8.4'
-          - '8.5'
+        include:
+          - php-version: '8.3'
+            composer-flags: ''
+          - php-version: '8.4'
+            composer-flags: ''
+          # laminas/laminas-mvc does not officially support PHP 8.5 yet,
+          # so we ignore the PHP platform requirement for early testing.
+          - php-version: '8.5'
+            composer-flags: '--ignore-platform-reqs=php'
 
     steps:
       - name: Checkout code
@@ -34,7 +39,7 @@ jobs:
         run: composer validate --strict
 
       - name: Install dependencies
-        run: composer update --no-interaction --no-progress
+        run: composer update --no-interaction --no-progress ${{ matrix.composer-flags }}
 
       - name: Run PHPUnit
         run: composer run phpunit
