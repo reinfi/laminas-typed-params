@@ -23,7 +23,7 @@ jobs:
           # laminas/laminas-mvc does not officially support PHP 8.5 yet,
           # so we ignore the PHP platform requirement for early testing.
           - php-version: '8.5'
-            composer-flags: '--ignore-platform-reqs=php'
+            composer-flags: '--ignore-platform-reqs'
 
     steps:
       - name: Checkout code
