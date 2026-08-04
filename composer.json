@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
         "laminas/laminas-mvc": "^3.3",
         "webmozart/assert": "^1.10"
     },
@@ -38,6 +38,6 @@
         "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^12.0"
     }
 }

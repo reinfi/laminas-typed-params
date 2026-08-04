@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  php-tests:
+    name: PHP ${{ matrix.php-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php-version: '8.3'
+            composer-flags: ''
+          - php-version: '8.4'
+            composer-flags: ''
+          # laminas/laminas-mvc does not officially support PHP 8.5 yet,
+          # so we ignore the PHP platform requirement for early testing.
+          - php-version: '8.5'
+            composer-flags: '--ignore-platform-reqs'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress ${{ matrix.composer-flags }}
+
+      - name: Run PHPUnit
+        run: composer run phpunit
